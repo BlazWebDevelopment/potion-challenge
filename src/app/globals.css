@@ -71,3 +71,22 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #23242c;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #23242c;
+  border-radius: 4px;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #23242c transparent;
+}
