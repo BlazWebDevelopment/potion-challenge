@@ -91,7 +91,7 @@ export function FilterPopup({
           <motion.span
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -right-1 -top-1 font-semibold flex bg-accent-border border border-accent h-5 w-5 items-center justify-center rounded-full bg-purple-500 text-xs text-white"
+            className="absolute -right-1 -top-1 font-semibold flex bg-purple border border-accent h-5 w-5 items-center justify-center rounded-full bg-purple-500 text-xs text-white"
           >
             {appliedFiltersCount}
           </motion.span>

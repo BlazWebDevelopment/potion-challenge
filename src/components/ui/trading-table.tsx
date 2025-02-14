@@ -14,7 +14,7 @@ import {
 } from "./table";
 import { Avatar, AvatarFallback, AvatarImage } from "./shadcn-avatar";
 import { FaChevronDown } from "react-icons/fa";
-import { FaCopy } from "react-icons/fa6";
+import { FaCheck, FaCopy } from "react-icons/fa6";
 import { useToast } from "@/hooks/use-toast";
 import SolanaIcon from "@/assets/sol-icon.svg";
 import Image from "next/image";
@@ -28,6 +28,7 @@ import {
 import Link from "next/link";
 import { Skeleton } from "./skeleton";
 import { copyToClipboard } from "@/utils/functions";
+import { TradingCard } from "./trading-card";
 
 interface TradingTableProps {
   traders: Trader[];
@@ -63,10 +64,13 @@ export default function TradingTable({
   isLoading,
 }: TradingTableProps) {
   const [currentPage, setCurrentPage] = useState(1);
+  const [copiedAddress, setCopiedAddress] = useState<string | null>(null);
+
+  const { toast } = useToast();
+
   const tradersPerPage = 10;
 
   useEffect(() => {
-    // Reset to first page whenever the traders list changes
     setCurrentPage(1);
   }, [traders]);
 
@@ -76,8 +80,6 @@ export default function TradingTable({
     traders && traders.slice(indexOfFirstTrader, indexOfLastTrader);
   const totalPages = traders && Math.ceil(traders.length / tradersPerPage);
 
-  const { toast } = useToast();
-
   const handlePreviousPage = () => {
     setCurrentPage((prev) => Math.max(prev - 1, 1));
   };
@@ -86,13 +88,19 @@ export default function TradingTable({
     setCurrentPage((prev) => Math.min(prev + 1, totalPages));
   };
 
-  const handlePageClick = (pageNumber: number) => {
-    setCurrentPage(pageNumber);
+  const handleCopy = (trader: Trader) => (e: React.MouseEvent) => {
+    e.preventDefault();
+    copyToClipboard(trader.address);
+    setCopiedAddress(trader.address);
+    toast({ description: "Copied to clipboard!" });
+    setTimeout(() => {
+      setCopiedAddress(null);
+    }, 3000);
   };
 
   return (
     <div>
-      <Table className="table-fixed w-full">
+      <Table className="table-fixed w-full max-lg:hidden">
         <colgroup>
           <col className="w-[100px]" />
           <col className="w-[250px]" />
@@ -273,18 +281,15 @@ export default function TradingTable({
                           </div>
                         </div>
                       </Link>
-                      <button
-                        onClick={() => {
-                          toast({
-                            description: "Copied to clipboard!",
-                          });
-                          copyToClipboard(trader.address);
-                        }}
-                      >
-                        <FaCopy
-                          size={14}
-                          className="text-secondary hover:text-secondary-hover"
-                        />
+                      <button onClick={handleCopy(trader)}>
+                        {copiedAddress === trader.address ? (
+                          <FaCheck size={16} className="text-white/60" />
+                        ) : (
+                          <FaCopy
+                            size={16}
+                            className="text-secondary hover:text-secondary-hover"
+                          />
+                        )}
                       </button>
                     </div>
                   </TableCell>
@@ -305,11 +310,20 @@ export default function TradingTable({
                     <span
                       className={cn(
                         "font-bold text-sm",
-                        trader.winRate >= 50 ? "text-green" : "text-red"
+                        Number(
+                          calculateWinRate(
+                            trader.trades.won,
+                            trader.trades.loses
+                          )
+                        ) >= 50
+                          ? "text-green"
+                          : "text-red"
                       )}
                     >
-                      {calculateWinRate(trader.trades.won, trader.trades.loses)}
-                      %
+                      {Number(
+                        calculateWinRate(trader.trades.won, trader.trades.loses)
+                      )}
+                      {"%"}
                     </span>
                   </TableCell>
                   <TableCell className="px-5 py-2 text-end font-bold text-secondary">
@@ -374,46 +388,67 @@ export default function TradingTable({
         </TableBody>
       </Table>
 
-      {/* Pagination Controls */}
+      <div className="lg:hidden space-y-4">
+        {isLoading
+          ? Array.from({ length: 3 }).map((_, index) => (
+              <div
+                key={`skeleton-${index}`}
+                className="bg-sidebar rounded-lg p-4 space-y-4"
+              >
+                <div className="flex items-center gap-3">
+                  <Skeleton className="size-12 rounded-full bg-background" />
+                  <div className="flex-1">
+                    <Skeleton className="h-5 w-24 mb-2 bg-background" />
+                    <Skeleton className="h-4 w-32 bg-background" />
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3">
+                  {Array.from({ length: 4 }).map((_, i) => (
+                    <Skeleton
+                      key={i}
+                      className="h-20 rounded-lg bg-background"
+                    />
+                  ))}
+                </div>
+                <Skeleton className="h-16 rounded-lg bg-background" />
+              </div>
+            ))
+          : currentTraders?.map((trader) => (
+              <TradingCard key={trader.address} trader={trader} />
+            ))}
+      </div>
+
       {!isLoading && traders.length > tradersPerPage && (
         <div className="mt-4 flex justify-center md:justify-end">
           <div className="flex space-x-2">
             <button
               onClick={handlePreviousPage}
               disabled={currentPage === 1}
-              className={`px-3 py-1 rounded-md ${
+              className={`px-3 py-1 rounded-md max-sm:px-6 max-sm:py-2 ${
                 currentPage === 1
                   ? "bg-accent/40 cursor-not-allowed text-white/60"
                   : "bg-accent text-white hover:bg-accent-hover"
               }`}
             >
-              <ChevronLeft className="size-4" />
+              <ChevronLeft className="size-4 max-sm:size-5" />
             </button>
-            {Array.from({ length: totalPages }, (_, index) => index + 1).map(
-              (page) => (
-                <button
-                  key={page}
-                  onClick={() => handlePageClick(page)}
-                  className={`px-1 text-sm py-1 rounded-md hover:underline${
-                    currentPage === page
-                      ? " text-white font-semibold"
-                      : " text-gray-400"
-                  }`}
-                >
-                  {page}
-                </button>
-              )
-            )}
+
+            <span
+              className={`px-1 text-sm py-1 max-sm:text-lg rounded-md hover:underline${" text-gray-400"}`}
+            >
+              {currentPage}
+            </span>
+
             <button
               onClick={handleNextPage}
               disabled={currentPage === totalPages}
-              className={`px-3 py-1 rounded-md ${
+              className={`px-3 py-1 rounded-md max-sm:px-6 max-sm:py-2 ${
                 currentPage === totalPages
                   ? "bg-accent/40 cursor-not-allowed text-white/60"
                   : "bg-accent text-white hover:bg-accent-hover"
               }`}
             >
-              <ChevronRight className="size-4" />
+              <ChevronRight className="size-4 max-sm:size-5" />
             </button>
           </div>
         </div>

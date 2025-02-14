@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import type { Filters, Trader } from "@/types/trader";
 import TradingTable from "./ui/trading-table";
 import TableNavBar from "./ui/table-nav";
@@ -16,7 +16,7 @@ export default function TradingDashboard() {
     key: keyof Trader;
     direction: "asc" | "desc";
   }>({ key: "rank", direction: "asc" });
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<Filters>({
     minFollowers: 0,
     maxFollowers: 1000000,
     winRate: [0, 100],
@@ -24,6 +24,7 @@ export default function TradingDashboard() {
     maxTokens: 1000,
     realizedPnl: [-1000, 1000],
   });
+
   const isTraders = activeMainTab === "traders";
 
   const {
@@ -33,46 +34,43 @@ export default function TradingDashboard() {
   } = useQuery({
     queryKey: ["traders"],
     queryFn: () => fetch("/api/traders").then((res) => res.json()),
+    staleTime: 5 * 60 * 1000,
   });
 
   const applyFilters = useCallback(
-    (traders: Trader[]) => {
-      return (
-        traders &&
-        traders.filter((trader) => {
-          return (
-            trader.followers >= filters.minFollowers &&
-            trader.followers <= filters.maxFollowers &&
-            trader.winRate >= filters.winRate[0] &&
-            trader.winRate <= filters.winRate[1] &&
-            trader.tokens >= filters.minTokens &&
-            trader.tokens <= filters.maxTokens &&
-            trader.realizedPnl >= filters.realizedPnl[0] &&
-            trader.realizedPnl <= filters.realizedPnl[1]
-          );
-        })
-      );
+    (tradersList: Trader[]) => {
+      return tradersList.filter((trader) => {
+        const { followers, winRate, tokens, realizedPnl } = trader;
+        return (
+          followers >= filters.minFollowers &&
+          followers <= filters.maxFollowers &&
+          winRate >= filters.winRate[0] &&
+          winRate <= filters.winRate[1] &&
+          tokens >= filters.minTokens &&
+          tokens <= filters.maxTokens &&
+          realizedPnl >= filters.realizedPnl[0] &&
+          realizedPnl <= filters.realizedPnl[1]
+        );
+      });
     },
     [filters]
   );
 
-  // Filter traders based on search query and applied filters
-  const filteredTraders =
-    traders &&
-    traders.filter((trader: Trader) => {
-      const searchLower = searchQuery.toLowerCase();
-      return (
-        (trader.handle.toLowerCase().includes(searchLower) ||
-          trader.address.toLowerCase().includes(searchLower) ||
-          trader.handle.toLowerCase().includes(searchLower)) &&
-        applyFilters([trader]).length > 0
-      );
-    });
+  const filteredTraders = useMemo(() => {
+    if (!traders) return [];
+    const searchLower = searchQuery.toLowerCase();
+    return applyFilters(
+      traders.filter(
+        (trader: Trader) =>
+          trader.handle.toLowerCase().includes(searchLower) ||
+          trader.address.toLowerCase().includes(searchLower)
+      )
+    );
+  }, [traders, searchQuery, applyFilters]);
 
-  // Sort traders based on current sort configuration
-  const sortedTraders =
-    traders &&
-    [...filteredTraders].sort((a, b) => {
+  const sortedTraders = useMemo(() => {
+    if (!filteredTraders) return [];
+    return [...filteredTraders].sort((a, b) => {
       const aValue = a[sortConfig.key];
       const bValue = b[sortConfig.key];
 
@@ -86,6 +84,7 @@ export default function TradingDashboard() {
         ? String(aValue).localeCompare(String(bValue))
         : String(bValue).localeCompare(String(aValue));
     });
+  }, [filteredTraders, sortConfig]);
 
   const handleSort = (key: keyof Trader) => {
     setSortConfig((current) => ({
@@ -110,7 +109,7 @@ export default function TradingDashboard() {
     });
   };
 
-  if (error) return <ErrorMessage />;
+  if (error) return <ErrorMessage message="Failed to load traders data." />;
 
   return (
     <div className="w-full space-y-4">

@@ -21,7 +21,7 @@ export default function ProfilePage() {
   });
 
   if (error) {
-    return <ErrorMessage />;
+    return <ErrorMessage message="Failed to load traders data." />;
   }
 
   if (isLoading) {
