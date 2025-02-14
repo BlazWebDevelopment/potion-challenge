@@ -171,7 +171,7 @@ export default function TableNavBar({
               placeholder="Search by name or wallet"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-10 w-full rounded-full border border-accent-border bg-transparent pl-10 pr-10 text-sm text-white placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-purple/20"
+              className="h-10 w-full rounded-full border border-accent-border bg-transparent pl-10 pr-10 text-sm md:text-base text-white placeholder:text-secondary focus:outline-none focus:ring-2 focus:ring-purple/20"
             />
             <AnimatePresence>
               {searchQuery && (
