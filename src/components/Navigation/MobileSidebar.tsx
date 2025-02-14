@@ -4,9 +4,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import Avatar from "../ui/avatar";
 import Socials from "../ui/socials";
 import { FaTimes } from "react-icons/fa";
-import { FaCopy } from "react-icons/fa6";
+import { FaCheck, FaCopy } from "react-icons/fa6";
 import AvatarIcon from "@/assets/avatar.webp";
 import Nav from "./Nav";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 
 interface MobileSidebarProps {
   isOpen: boolean;
@@ -21,8 +23,19 @@ function MobileSidebar({
   userName,
   solanaAddress,
 }: MobileSidebarProps) {
+  const { toast } = useToast();
+  const [copied, setCopied] = useState(false);
+
   const copyToClipboard = () => {
     navigator.clipboard.writeText(solanaAddress);
+  };
+
+  const handleCopy = (e: React.MouseEvent) => {
+    e.preventDefault();
+    copyToClipboard();
+    setCopied(true);
+    toast({ description: "Copied to clipboard!" });
+    setTimeout(() => setCopied(false), 7500);
   };
 
   return (
@@ -64,13 +77,25 @@ function MobileSidebar({
                   <h2 className="text-xl font-semibold">{userName}</h2>
                   <div className="flex items-center space-x-2">
                     <button
-                      onClick={copyToClipboard}
+                      onClick={handleCopy}
                       className="text-secondary hover:text-secondary-hover flex gap-2 items-center"
                     >
                       <span className="text-sm truncate text-secondary max-w-[180px]">
-                        {solanaAddress.slice(0, 10) + "..."}
+                        {`${solanaAddress.slice(0, 6)}...${solanaAddress.slice(
+                          -6
+                        )}`}
                       </span>
-                      <FaCopy size={16} />
+                      {copied ? (
+                        <FaCheck
+                          size={16}
+                          className="text-white/60 hover:text-secondary-hover"
+                        />
+                      ) : (
+                        <FaCopy
+                          size={16}
+                          className="text-secondary hover:text-secondary-hover"
+                        />
+                      )}
                     </button>
                   </div>
                 </div>
