@@ -114,7 +114,7 @@ export default function TradingTable({
           <col className="w-[150px]" />
           <col className="w-[80px]" />
         </colgroup>
-        <TableHeader className="bg-accent rounded-xl">
+        <TableHeader className="bg-accent/80 rounded-xl">
           <TableRow>
             <TableHead
               onClick={() => onSort("rank")}
