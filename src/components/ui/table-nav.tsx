@@ -53,7 +53,6 @@ export default function TableNavBar({
     <div className="flex flex-col space-y-4 py-2 lg:flex-row lg:items-center lg:justify-between lg:space-y-0 ">
       {(showMainTabs || showTimeTabs) && (
         <div className="flex flex-col space-y-4 lg:flex-row lg:items-center lg:space-x-6 lg:space-y-0">
-          {/* Main Tabs */}
           {showMainTabs && (
             <div className="flex rounded-full relative">
               {activeMainTabs.map((tab, i) => (
@@ -84,11 +83,8 @@ export default function TableNavBar({
               ))}
             </div>
           )}
-
-          {/* Time Period Tabs (Dropdown on mobile, Tabs on larger screens) */}
           {showTimeTabs && (
             <div className="relative lg:flex md:rounded-full">
-              {/* Mobile Dropdown */}
               <div className="lg:hidden">
                 <button
                   onClick={() => setIsTimeDropdownOpen(!isTimeDropdownOpen)}
@@ -128,7 +124,6 @@ export default function TableNavBar({
                 </AnimatePresence>
               </div>
 
-              {/* Desktop Tabs */}
               <div className="hidden lg:flex lg:rounded-full lg:relative">
                 {timePeriodTabs.map((tab, i) => (
                   <div key={i} className="relative">
@@ -164,7 +159,6 @@ export default function TableNavBar({
 
       {displaySearch && (
         <div className="flex items-center space-x-4">
-          {/* Search Input */}
           <div className="relative flex-grow navTab:w-[420px]">
             <CiSearch className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-secondary" />
             <input
@@ -189,7 +183,6 @@ export default function TableNavBar({
             </AnimatePresence>
           </div>
 
-          {/* Filter Component */}
           {filterComponent}
         </div>
       )}

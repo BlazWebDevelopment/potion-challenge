@@ -47,7 +47,6 @@ export default function TimeTabsNavBar({
         </button>
       </div>
       <div className="relative lg:flex md:rounded-full w-full">
-        {/* Mobile Dropdown */}
         <div className="lg:hidden">
           <button
             onClick={(e) => {
@@ -91,7 +90,6 @@ export default function TimeTabsNavBar({
           </AnimatePresence>
         </div>
 
-        {/* Desktop Tabs */}
         <div className="flex flex-row gap-8 justify-between w-full">
           <div className="hidden lg:flex lg:rounded-full lg:relative">
             {timePeriodTabs.map((tab, i) => (

@@ -10,7 +10,6 @@ export default function TableNavBar() {
   return (
     <div className="flex items-center justify-between gap-4 py-2">
       <div className="flex items-center gap-20">
-        {/* Main Tabs */}
         <div className="flex rounded-full">
           {["traders", "groups"].map((tab) => (
             <button
@@ -27,7 +26,6 @@ export default function TableNavBar() {
           ))}
         </div>
 
-        {/* Time Period Tabs  */}
         <div className="flex rounded-full">
           {["daily", "weekly", "monthly", "all-time"].map((tab) => (
             <button
@@ -46,7 +44,6 @@ export default function TableNavBar() {
       </div>
 
       <div className="flex items-center gap-4">
-        {/* Search Input */}
         <div className="relative">
           <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-secondary" />
           <input
@@ -56,7 +53,6 @@ export default function TableNavBar() {
           />
         </div>
 
-        {/* Menu Button with Notification */}
         <div className="relative">
           <button className="rounded-full bg-accent p-2 transition-colors hover:bg-accent">
             <svg

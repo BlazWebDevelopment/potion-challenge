@@ -204,7 +204,6 @@ export default function TradingTable({
           {isLoading
             ? Array.from({ length: tradersPerPage }).map((_, index) => (
                 <TableRow key={`skeleton-${index}`}>
-                  {/* Skeleton Rows */}
                   <TableCell className="px-5 py-3.5 flex justify-center items-center">
                     <Skeleton className="w-full size-10 bg-background rounded-full" />
                   </TableCell>
