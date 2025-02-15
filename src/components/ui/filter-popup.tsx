@@ -200,7 +200,10 @@ export function FilterPopup({
             >
               Reset Filters
             </Button>
-            <Button onClick={handleApplyFilters} className="flex-1 bg-accent">
+            <Button
+              onClick={handleApplyFilters}
+              className="flex-1 bg-accent hover:bg-accent-border"
+            >
               Apply Filters
             </Button>
           </div>

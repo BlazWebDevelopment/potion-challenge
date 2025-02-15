@@ -10,43 +10,18 @@ Furthermore, the table design incorporates rounded corners to maintain consisten
 
 For mobile devices, the sidebar is positioned on the left side to ensure it is easily accessible with one hand, optimizing the user experience for mobile interactions to be the best possible.
 
-## Table of Contents
+## How It Works
 
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Running the Development Server](#running-the-development-server)
-- [Project Structure](#project-structure)
-- [API Routes](#api-routes)
-- [Components](#components)
-- [Styling](#styling)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+- **Groups Tab:** Displays a message stating "Coming soon, please be patient!" to inform users of upcoming features.
+- **Sortable Table Headers:** Click on any table header to sort the leaderboard in ascending or descending order.
+- **Trader Profiles:** Selecting a trader navigates to their detailed profile page.
+- **Search and Filtering:** Users can efficiently search and filter traders based on various criteria as outlined in the instructions.
+- **Navigation Tabs:** The active tab in the navigation menu features a bottom shine effect, enhancing the user experience.
+- **Pagination:** Seamlessly switch between pages using the intuitive pagination controls.
 
-## Features
-
-- **Interactive Leaderboard:** View and interact with a dynamic leaderboard of traders.
-- **Real-Time Data Fetching:** Utilizes React Query for efficient data fetching and caching.
-- **Responsive Design:** Ensures a seamless experience across all devices.
-- **Theme Customization:** Supports dark and light modes with customizable Tailwind CSS configurations.
-- **Modular Components:** Built with reusable and maintainable React components.
-- **Error Handling:** Gracefully handles errors with user-friendly messages.
-
-## Technologies Used
-
-- **Next.js:** React framework for server-side rendering and generating static websites.
-- **React:** JavaScript library for building user interfaces.
-- **TypeScript:** Typed superset of JavaScript for better code quality and developer experience.
-- **Tailwind CSS:** Utility-first CSS framework for rapid UI development.
-- **Radix UI:** Primitives for building accessible UI components.
-- **Framer Motion:** Animation library for React.
-- **React Query (@tanstack/react-query):** Data-fetching library for React.
-- **Lucide React:** Icon library for React.
-- **ESLint:** Linting tool for maintaining code quality.
+- **Data Fetching:** Retrieves data from a custom API endpoint built with Next.js, ensuring reliable and efficient data management.
+- **State Handling:** Manages loading and error states effectively, providing clear feedback to users during data retrieval processes.
+- **Dummy Data:** Please note that the current data is placeholder content; realistic numbers are not the focus at this stage.
 
 ## Getting Started
 
@@ -89,6 +64,44 @@ pnpm run dev
 - **Endpoint:** `/api/traders`
 - **Method:** `GET`
 - **Description:** Retrieves a list of all traders.
+
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the Development Server](#running-the-development-server)
+- [Project Structure](#project-structure)
+- [API Routes](#api-routes)
+- [Components](#components)
+- [Styling](#styling)
+- [Deployment](#deployment)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+
+## Features
+
+- **Interactive Leaderboard:** View and interact with a dynamic leaderboard of traders.
+- **Real-Time Data Fetching:** Utilizes React Query for efficient data fetching and caching.
+- **Responsive Design:** Ensures a seamless experience across all devices.
+- **Theme Customization:** Supports dark and light modes with customizable Tailwind CSS configurations.
+- **Modular Components:** Built with reusable and maintainable React components.
+- **Error Handling:** Gracefully handles errors with user-friendly messages.
+
+## Technologies Used
+
+- **Next.js:** React framework for server-side rendering and generating static websites.
+- **React:** JavaScript library for building user interfaces.
+- **TypeScript:** Typed superset of JavaScript for better code quality and developer experience.
+- **Tailwind CSS:** Utility-first CSS framework for rapid UI development.
+- **Radix UI:** Primitives for building accessible UI components.
+- **Framer Motion:** Animation library for React.
+- **React Query (@tanstack/react-query):** Data-fetching library for React.
+- **Lucide React:** Icon library for React.
+- **ESLint:** Linting tool for maintaining code quality.
 
 #### Example Response
 
