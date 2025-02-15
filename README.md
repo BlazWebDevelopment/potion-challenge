@@ -23,6 +23,30 @@ For mobile devices, the sidebar is positioned on the left side to ensure it is e
 - **State Handling:** Manages loading and error states effectively, providing clear feedback to users during data retrieval processes.
 - **Dummy Data:** Please note that the current data is placeholder content; realistic numbers are not the focus at this stage.
 
+## Deployment
+
+The **Potion Leaderboard** application has been deployed using [Vercel](https://vercel.com), chosen for its seamless integration with GitHub and its user-friendly setup process. Vercel offers a streamlined deployment workflow, allowing you to connect your GitHub repository directly. This integration enables automatic deployments whenever changes are pushed to the repository, ensuring that your live application remains up-to-date with the latest codebase.
+
+**Key Benefits of Using Vercel:**
+
+- **Easy Setup:** Vercel requires minimal configuration to get your Next.js application up and running.
+- **Automatic Deployments:** Every commit to your GitHub repository triggers an automatic deployment, facilitating continuous integration and delivery.
+- **Custom Domains:** Easily manage and configure custom domains with SSL support.
+- **Scalability:** Vercel's infrastructure is built to handle applications of any scale, ensuring reliable performance under varying loads.
+- **Serverless Functions:** Utilize serverless functions to extend your application’s backend capabilities without managing server infrastructure.
+
+In addition to Vercel, **Netlify** serves as an excellent alternative for deploying the application. Netlify is renowned for its robust feature set and developer-friendly tools, making it a strong contender for hosting modern web applications.
+
+**Advantages of Using Netlify:**
+
+- **Preview Deployments:** Netlify automatically generates preview links for each Pull Request, allowing team members to view and test changes in a live environment before merging.
+- **Continuous Deployment:** Just like Vercel, Netlify integrates effortlessly with GitHub, enabling automatic deployments on code commits.
+- **Build Automation:** Netlify offers powerful build settings and environment variables management, providing flexibility in how your application is built and deployed.
+- **Edge Functions:** Leverage Netlify’s edge functions to run code closer to your users for faster response times.
+- **Comprehensive Analytics:** Gain insights into your application's performance and user interactions with Netlify's built-in analytics tools.
+
+Both Vercel and Netlify provide robust solutions for deploying the **Potion Leaderboard** application, each with unique strengths. Vercel is ideal for developers seeking a straightforward deployment process with excellent support for Next.js features, while Netlify offers advanced preview and collaboration tools that enhance the development workflow. Depending on your specific needs and preferences, either platform can effectively support the deployment and scaling of your application.
+
 ## Getting Started
 
 Follow these instructions to set up the project locally.

@@ -8,7 +8,7 @@ import { Label } from "@/components/ui/label";
 import { Slider } from "@/components/ui/slider";
 import { motion } from "framer-motion";
 import { SlidersHorizontal } from "lucide-react";
-import { Filters } from "@/types/trader";
+import type { Filters } from "@/types/trader";
 
 interface FilterPopupProps {
   onApplyFilters: (filters: Filters) => void;
@@ -22,6 +22,9 @@ const initialFilters: Filters = {
   minTokens: 0,
   maxTokens: 1000,
   realizedPnl: [-1000, 1000],
+  avgBuy: [0, 100],
+  minAvgHold: 0,
+  maxAvgHold: 14400,
 };
 
 export function FilterPopup({
@@ -65,6 +68,18 @@ export function FilterPopup({
     });
     setAppliedFiltersCount(count);
   }, [filters]);
+
+  const formatAvgHold = (minutes: number): string => {
+    if (minutes < 60) {
+      return `${minutes}m`;
+    } else if (minutes < 1440) {
+      const hours = Math.floor(minutes / 60);
+      return `${hours}h`;
+    } else {
+      const days = Math.floor(minutes / 1440);
+      return `${days}d`;
+    }
+  };
 
   return (
     <>
@@ -190,6 +205,51 @@ export function FilterPopup({
             <div className="flex justify-between text-sm mt-2 text-white/60">
               <span>{filters.realizedPnl[0]}</span>
               <span>{filters.realizedPnl[1]}</span>
+            </div>
+          </div>
+          <div>
+            <Label>Average Buy Range</Label>
+            <Slider
+              min={0}
+              max={100}
+              step={1}
+              value={filters.avgBuy}
+              onValueChange={(value) => handleFilterChange("avgBuy", value)}
+              className="mt-2"
+            />
+            <div className="flex justify-between text-sm mt-2 text-white/60">
+              <span>{filters.avgBuy[0]}</span>
+              <span>{filters.avgBuy[1]}</span>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <Label htmlFor="minAvgHold">Min Avg Hold</Label>
+              <Input
+                id="minAvgHold"
+                type="number"
+                value={filters.minAvgHold}
+                onChange={(e) =>
+                  handleFilterChange("minAvgHold", Number(e.target.value))
+                }
+                min={0}
+                max={filters.maxAvgHold}
+              />
+              <span className="text-xs text-white/60 mt-1 block">min </span>
+            </div>
+            <div>
+              <Label htmlFor="maxAvgHold">Max Avg Hold</Label>
+              <Input
+                id="maxAvgHold"
+                type="number"
+                value={filters.maxAvgHold}
+                onChange={(e) =>
+                  handleFilterChange("maxAvgHold", Number(e.target.value))
+                }
+                min={filters.minAvgHold}
+                max={14400}
+              />
+              <span className="text-xs text-white/60 mt-1 block">min </span>
             </div>
           </div>
           <div className="flex space-x-2">

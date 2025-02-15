@@ -23,6 +23,9 @@ export default function TradingDashboard() {
     minTokens: 0,
     maxTokens: 1000,
     realizedPnl: [-1000, 1000],
+    avgBuy: [0, 100],
+    minAvgHold: 0,
+    maxAvgHold: 14400,
   });
 
   const isTraders = activeMainTab === "traders";
@@ -40,16 +43,41 @@ export default function TradingDashboard() {
   const applyFilters = useCallback(
     (tradersList: Trader[]) => {
       return tradersList.filter((trader) => {
-        const { followers, winRate, tokens, realizedPnl } = trader;
-        return (
+        const { followers, winRate, tokens, realizedPnl, avgBuy, avgHold } =
+          trader;
+
+        console.log("Filtering trader:", trader);
+        console.log("Current filters:", filters);
+
+        const followersMatch =
           followers >= filters.minFollowers &&
-          followers <= filters.maxFollowers &&
-          winRate >= filters.winRate[0] &&
-          winRate <= filters.winRate[1] &&
-          tokens >= filters.minTokens &&
-          tokens <= filters.maxTokens &&
+          followers <= filters.maxFollowers;
+        const winRateMatch =
+          winRate >= filters.winRate[0] && winRate <= filters.winRate[1];
+        const tokensMatch =
+          tokens >= filters.minTokens && tokens <= filters.maxTokens;
+        const pnlMatch =
           realizedPnl >= filters.realizedPnl[0] &&
-          realizedPnl <= filters.realizedPnl[1]
+          realizedPnl <= filters.realizedPnl[1];
+        const avgBuyMatch =
+          avgBuy >= filters.avgBuy[0] && avgBuy <= filters.avgBuy[1];
+        const avgHoldMatch =
+          avgHold >= filters.minAvgHold && avgHold <= filters.maxAvgHold;
+
+        if (!followersMatch) console.log("Followers condition not met");
+        if (!winRateMatch) console.log("Win rate condition not met");
+        if (!tokensMatch) console.log("Tokens condition not met");
+        if (!pnlMatch) console.log("PNL condition not met");
+        if (!avgBuyMatch) console.log("Avg Buy condition not met");
+        if (!avgHoldMatch) console.log("Avg Hold condition not met");
+
+        return (
+          followersMatch &&
+          winRateMatch &&
+          tokensMatch &&
+          pnlMatch &&
+          avgBuyMatch &&
+          avgHoldMatch
         );
       });
     },
@@ -59,13 +87,15 @@ export default function TradingDashboard() {
   const filteredTraders = useMemo(() => {
     if (!traders) return [];
     const searchLower = searchQuery.toLowerCase();
-    return applyFilters(
+    const filtered = applyFilters(
       traders.filter(
         (trader: Trader) =>
           trader.handle.toLowerCase().includes(searchLower) ||
           trader.address.toLowerCase().includes(searchLower)
       )
     );
+    console.log("Filtered traders:", filtered);
+    return filtered;
   }, [traders, searchQuery, applyFilters]);
 
   const sortedTraders = useMemo(() => {
@@ -106,6 +136,9 @@ export default function TradingDashboard() {
       minTokens: 0,
       maxTokens: 1000,
       realizedPnl: [-1000, 1000],
+      avgBuy: [0, 100],
+      minAvgHold: 0,
+      maxAvgHold: 14400,
     });
   };
 

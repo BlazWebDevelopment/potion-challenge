@@ -26,4 +26,7 @@ export type Filters = {
   minTokens: number;
   maxTokens: number;
   realizedPnl: [number, number];
+  avgBuy: [number, number];
+  minAvgHold: number;
+  maxAvgHold: number;
 };
