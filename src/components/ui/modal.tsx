@@ -40,12 +40,14 @@ export const Modal: React.FC<ModalProps> = ({
       document.addEventListener("keydown", handleEscape);
       document.addEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "hidden";
+      document.body.classList.add("scrollbar-gutter");
     }
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.removeEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "unset";
+      document.body.classList.remove("scrollbar-gutter");
     };
   }, [isOpen, onClose]);
 

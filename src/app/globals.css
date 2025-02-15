@@ -72,7 +72,7 @@ body {
   }
 }
 
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 8px;
 }
 
@@ -88,4 +88,4 @@ body {
 * {
   scrollbar-width: thin;
   scrollbar-color: #23242c transparent;
-} */
+}
