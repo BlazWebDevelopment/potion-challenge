@@ -48,18 +48,18 @@ function MobileSidebar({
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 bg-black z-40 right-0"
+              className="fixed inset-0 bg-black z-40 left-0"
               onClick={onClose}
             />
             <motion.div
-              initial={{ x: "100%" }}
+              initial={{ x: "-100%" }}
               animate={{ x: 0 }}
-              exit={{ x: "100%" }}
+              exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 30, stiffness: 300 }}
-              className="fixed right-0 top-0 bottom-0 w-64 bg-sidebar text-white z-50 shadow-lg mobile-sidebar"
+              className="fixed left-0 top-0 bottom-0 w-64 bg-sidebar text-white z-50 shadow-lg mobile-sidebar"
             >
-              <div className="flex flex-col h-full p-4">
-                <div className=" flex justify-end">
+              <div className="flex flex-col h-full py-4">
+                <div className=" flex justify-end px-4">
                   <button
                     onClick={onClose}
                     className="text-secondary hover:text-secondary-hover"
@@ -99,7 +99,9 @@ function MobileSidebar({
                     </button>
                   </div>
                 </div>
-                <Nav />
+                <div className="max-lg:pr-6">
+                  <Nav />
+                </div>
                 <div className="mt-auto mx-auto">
                   <Socials />
                 </div>

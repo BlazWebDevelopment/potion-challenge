@@ -2,6 +2,14 @@
 
 Potion Leaderboard is a comprehensive Next.js application designed to showcase and manage a leaderboard of traders. Built with a modern tech stack, it offers a seamless user experience with real-time data fetching, interactive UI components, and responsive design.
 
+## Design
+
+The mobile design diverges from traditional table layouts, opting instead for card-based representations. This approach enhances the UI/UX on smaller screens by allowing users to view all relevant trader information at a glance, eliminating the need for horizontal scrolling. The overall design is sleek and modern, aligning seamlessly with the Potion theme.
+
+Furthermore, the table design incorporates rounded corners to maintain consistency with other UI elements throughout the application. Copy address buttons have been strategically placed across various sections, including the profile sidebar, trader table, and individual user profile pages, enabling users to easily copy addresses as needed. On copy adress button I added user feedback toast and icon changes to checkmark, so user knows when he successfully copied the adress.
+
+For mobile devices, the sidebar is positioned on the left side to ensure it is easily accessible with one hand, optimizing the user experience for mobile interactions to be the best possible.
+
 ## Table of Contents
 
 - [Features](#features)

@@ -1,12 +1,13 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 import { IconType } from "react-icons";
-
 import { MdOutlineLeaderboard } from "react-icons/md";
 import { MdOutlineLibraryBooks } from "react-icons/md";
 import { TbCurrencySolana } from "react-icons/tb";
+import { cn } from "@/lib/utils";
 
 type NavItem = {
   name: string;
@@ -15,10 +16,12 @@ type NavItem = {
 };
 
 function Nav() {
+  const pathname = usePathname();
+
   const navItems: NavItem[] = [
     {
       name: "Leaderboard",
-      link: "https://docs.potionvision.com/",
+      link: "/",
       icon: MdOutlineLeaderboard,
     },
     {
@@ -26,22 +29,57 @@ function Nav() {
       link: "https://docs.potionvision.com/",
       icon: MdOutlineLibraryBooks,
     },
-    { name: "Prizes", link: "/", icon: TbCurrencySolana },
+    {
+      name: "Prizes",
+      link: "https://docs.potionvision.com/",
+      icon: TbCurrencySolana,
+    },
   ];
+
   return (
     <nav className="flex flex-row gap-16 max-lg:flex-col max-lg:gap-3 max-lg:items-center">
-      {navItems.map((navItem) => (
-        <Link
-          key={navItem.name}
-          href={navItem.link}
-          className="max-lg:flex max-lg:gap-2 max-lg:items-center max-lg:rounded-lg max-lg:px-6 max-lg:w-full max-lg:py-1.5 hover:text-white/70 text-white max-lg:text-white/80"
-        >
-          <navItem.icon className="lg:hidden" />
-          <span className="font-bold text-lg max-lg:text-base max-lg:font-normal">
-            {navItem.name}
-          </span>
-        </Link>
-      ))}
+      {navItems.map((navItem) => {
+        const isActive = pathname === navItem.link;
+
+        return (
+          <Link
+            key={navItem.name}
+            href={navItem.link}
+            className={cn(
+              "group relative flex items-center gap-2 transition-colors duration-200",
+              "max-lg:w-full  max-lg:px-6 max-lg:py-2",
+              "max-lg:justify-start max-lg:py-3 max-lg:pl-6",
+              "text-white/80 hover:text-white max-lg:rounded-r-2xl",
+              isActive && "bg-background text-white",
+              !isActive && "max-lg:hover:bg-background/50"
+            )}
+          >
+            <navItem.icon
+              className={cn(
+                "h-5 w-5 transition-transform duration-200",
+                "lg:hidden",
+                "max-lg:block",
+                "group-hover:scale-110"
+              )}
+            />
+            <span
+              className={cn(
+                "font-bold text-lg transition-all duration-200",
+                "max-lg:text-base max-lg:font-normal",
+                "max-lg:text-sm",
+                isActive && "max-lg:font-medium"
+              )}
+            >
+              {navItem.name}
+            </span>
+            {isActive && (
+              <div className="absolute -bottom-1 left-0 hidden h-[1.5px] w-full overflow-hidden lg:block">
+                <div className="h-full w-full animate-shimmer bg-gradient-to-r from-transparent via-purple/80 to-transparent" />
+              </div>
+            )}
+          </Link>
+        );
+      })}
     </nav>
   );
 }

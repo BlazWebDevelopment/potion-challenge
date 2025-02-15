@@ -31,10 +31,7 @@ function MobileHeader() {
 
   return (
     <>
-      <div className="flex flex-row justify-between lg:hidden">
-        <div className="flex flex-row gap-20 items-center">
-          <Logo />
-        </div>
+      <div className="flex flex-row w-full lg:hidden justify-between items-center">
         <div className="flex flex-row gap-12 items-center">
           <Avatar
             avatar={AvatarIcon}
@@ -44,6 +41,9 @@ function MobileHeader() {
             onClick={toggleSidebar}
             classname="max-md:max-w-10"
           />
+        </div>
+        <div className="flex justify-center items-center flex-grow">
+          <Logo />
         </div>
       </div>
       <MobileSidebar
