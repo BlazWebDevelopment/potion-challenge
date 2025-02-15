@@ -90,11 +90,3 @@ body {
   scrollbar-width: thin;
   scrollbar-color: #23242c transparent;
 }
-
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 100vh;
-  width: 250px;
-}
