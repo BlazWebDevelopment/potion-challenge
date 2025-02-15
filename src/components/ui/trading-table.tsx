@@ -205,10 +205,10 @@ export default function TradingTable({
             ? Array.from({ length: tradersPerPage }).map((_, index) => (
                 <TableRow key={`skeleton-${index}`}>
                   {/* Skeleton Rows */}
-                  <TableCell className="px-5 py-2 flex justify-center items-center">
+                  <TableCell className="px-5 py-3.5 flex justify-center items-center">
                     <Skeleton className="w-full size-10 bg-background rounded-full" />
                   </TableCell>
-                  <TableCell className="px-5 py-2">
+                  <TableCell className="px-5 py-3">
                     <div className="flex gap-2">
                       <Skeleton className="w-14 h-10 bg-background rounded-full" />
                       <div className="flex flex-col space-y-2 w-full">
