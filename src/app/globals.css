@@ -2,9 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  margin: 0px;
+  padding: 0px;
+}
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: #060611;
   font-family: "Geist", serif;
+  margin: 0px;
+  padding: 0px;
 }
 
 @layer base {
@@ -71,26 +81,16 @@ body {
     @apply bg-background text-foreground;
   }
 }
-@layer utilities {
-  .scrollbar-gutter {
-    scrollbar-gutter: stable;
-  }
-}
 
 ::-webkit-scrollbar {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
-  background: #23242c;
-}
-
 ::-webkit-scrollbar-thumb {
   background-color: #23242c;
-  border-radius: 4px;
+  border-radius: 6px;
 }
 
-* {
-  scrollbar-width: thin;
-  scrollbar-color: #23242c transparent;
+::-webkit-scrollbar-thumb:hover {
+  background: #333540;
 }
