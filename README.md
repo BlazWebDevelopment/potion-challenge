@@ -99,13 +99,8 @@ pnpm run dev
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running the Development Server](#running-the-development-server)
-- [Project Structure](#project-structure)
 - [API Routes](#api-routes)
-- [Components](#components)
 - [Styling](#styling)
-- [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
 - [Contact](#contact)
 
 ## Features
@@ -159,8 +154,6 @@ json
 - **Method:** `GET`
 - **Description:** Retrieves details of a specific trader based on their address.
 
-## Components
-
 ### Header
 
 The `Header` component includes the main navigation and user avatar. It adapts to different screen sizes with a mobile-friendly `MobileHeader`.
@@ -191,41 +184,8 @@ Provides toast notifications for user feedback.
 
 The application uses Tailwind CSS for styling, ensuring a responsive and modern design. Custom configurations are defined in `tailwind.config.ts`, and global styles are managed in `globals.css`.
 
-## Deployment
-
-The application is optimized for deployment on the [Vercel Platform](https://vercel.com). Follow the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for detailed instructions.
-
-## Contributing
-
-Contributions are welcome! Please follow these steps to contribute:
-
-1. **Fork the Repository**
-2. **Create a New Branch**
-
-   ```bash
-   git checkout -b feature/YourFeature
-   ```
-
-3. **Commit Your Changes**
-
-   ```bash
-   git commit -m "Add YourFeature"
-   ```
-
-4. **Push to the Branch**
-
-   ```bash
-   git push origin feature/YourFeature
-   ```
-
-5. **Open a Pull Request**
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
-
 ## Contact
 
-For any inquiries or feedback, please contact [your-email@example.com](mailto:your-email@example.com).
+For any inquiries or feedback, please contact [your-email@example.com](mailto:dezmanblaz1@gmail.com).
 
----
+## Or visit my website: https://www.blazdezman.com/
