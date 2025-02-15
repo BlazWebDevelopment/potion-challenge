@@ -36,16 +36,23 @@ export const Modal: React.FC<ModalProps> = ({
       }
     };
 
+    const scrollBarWidth =
+      window.innerWidth - document.documentElement.clientWidth;
+
     if (isOpen) {
       document.addEventListener("keydown", handleEscape);
       document.addEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "hidden";
+      if (scrollBarWidth > 0) {
+        document.body.style.paddingRight = `${scrollBarWidth}px`;
+      }
     }
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.removeEventListener("mousedown", handleClickOutside);
       document.body.style.overflow = "unset";
+      document.body.style.paddingRight = "unset";
     };
   }, [isOpen, onClose]);
 
