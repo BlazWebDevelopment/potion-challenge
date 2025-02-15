@@ -69,18 +69,6 @@ export function FilterPopup({
     setAppliedFiltersCount(count);
   }, [filters]);
 
-  const formatAvgHold = (minutes: number): string => {
-    if (minutes < 60) {
-      return `${minutes}m`;
-    } else if (minutes < 1440) {
-      const hours = Math.floor(minutes / 60);
-      return `${hours}h`;
-    } else {
-      const days = Math.floor(minutes / 1440);
-      return `${days}d`;
-    }
-  };
-
   return (
     <>
       <div
