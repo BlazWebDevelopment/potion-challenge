@@ -92,5 +92,9 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #333540;
+  background: #434553;
+}
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #23242c transparent;
 }
