@@ -4,7 +4,7 @@ import { ChevronDown, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type React from "react"; // Added import for React
 
-interface TableNavBarProps {
+type TableNavBarProps = {
   activeMainTab?: string;
   setActiveMainTab: (tab: string) => void;
   activeTimeTab: string;
@@ -14,7 +14,7 @@ interface TableNavBarProps {
   filterComponent?: React.ReactNode;
   displayTabs?: "main" | "time";
   displaySearch?: boolean;
-}
+};
 
 const activeMainTabs: { name: string }[] = [
   { name: "traders" },

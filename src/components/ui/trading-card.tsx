@@ -18,9 +18,9 @@ import {
   calculateWinRate,
 } from "@/utils/fomatters";
 
-interface TradingCardProps {
+type TradingCardProps = {
   trader: Trader;
-}
+};
 
 const RankingBadge: React.FC<{ rank: number }> = ({ rank }) => {
   const getBadgeColor = (rank: number) => {

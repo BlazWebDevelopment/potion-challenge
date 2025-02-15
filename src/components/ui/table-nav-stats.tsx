@@ -3,11 +3,11 @@ import { ChevronDown, ExternalLink, RotateCw } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import type React from "react";
 
-interface TimeTabsNavBarProps {
+type TimeTabsNavBarProps = {
   activeTimeTab: string;
   setActiveTimeTab: (tab: string) => void;
   handleRefetch: () => void;
-}
+};
 
 const timePeriodTabs: { name: string }[] = [
   { name: "daily" },

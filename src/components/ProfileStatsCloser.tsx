@@ -15,9 +15,9 @@ import {
 import type { Trader } from "@/types/trader";
 import { cn } from "@/lib/utils";
 
-interface ProfileStatsCloserProps {
+type ProfileStatsCloserProps = {
   trader: Trader | null;
-}
+};
 
 type Section = "overview" | "averages" | "performance";
 

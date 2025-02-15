@@ -5,12 +5,12 @@ import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface ModalProps {
+type ModalProps = {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
   title?: string;
-}
+};
 
 export const Modal: React.FC<ModalProps> = ({
   isOpen,

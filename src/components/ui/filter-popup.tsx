@@ -10,10 +10,10 @@ import { motion } from "framer-motion";
 import { SlidersHorizontal } from "lucide-react";
 import type { Filters } from "@/types/trader";
 
-interface FilterPopupProps {
+type FilterPopupProps = {
   onApplyFilters: (filters: Filters) => void;
   onResetFilters: () => void;
-}
+};
 
 const initialFilters: Filters = {
   minFollowers: 0,

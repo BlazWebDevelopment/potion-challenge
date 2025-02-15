@@ -3,14 +3,14 @@ import { X } from "lucide-react";
 import type React from "react";
 import { CiSearch } from "react-icons/ci";
 
-interface MainTabsNavBarProps {
+type MainTabsNavBarProps = {
   activeMainTab?: string;
   setActiveMainTab: (tab: string) => void;
   searchQuery?: string;
   setSearchQuery: (query: string) => void;
   filterComponent?: React.ReactNode;
   displaySearch?: boolean;
-}
+};
 
 const activeMainTabs: { name: string }[] = [
   { name: "traders" },

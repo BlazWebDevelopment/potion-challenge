@@ -1,7 +1,7 @@
 import type React from "react";
 import { cn } from "@/lib/utils";
 
-interface StatCardProps {
+type StatCardProps = {
   label: string;
   value: React.ReactNode;
   subValue?: React.ReactNode;
@@ -11,7 +11,7 @@ interface StatCardProps {
   borderR?: boolean;
   borderT?: boolean;
   borderB?: boolean;
-}
+};
 
 export function StatCard({
   label,

@@ -30,7 +30,7 @@ import { Skeleton } from "./skeleton";
 import { copyToClipboard } from "@/utils/functions";
 import { TradingCard } from "./trading-card";
 
-interface TradingTableProps {
+type TradingTableProps = {
   traders: Trader[];
   sortConfig: {
     key: keyof Trader;
@@ -38,7 +38,7 @@ interface TradingTableProps {
   };
   onSort: (key: keyof Trader) => void;
   isLoading: boolean;
-}
+};
 
 const RankingCoins: React.FC<{ rank: number }> = ({ rank }) => {
   return (

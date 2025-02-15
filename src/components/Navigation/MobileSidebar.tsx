@@ -10,12 +10,12 @@ import Nav from "./Nav";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
-interface MobileSidebarProps {
+type MobileSidebarProps = {
   isOpen: boolean;
   onClose: () => void;
   userName: string;
   solanaAddress: string;
-}
+};
 
 function MobileSidebar({
   isOpen,
