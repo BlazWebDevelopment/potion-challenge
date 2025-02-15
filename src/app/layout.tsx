@@ -30,7 +30,7 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased px-20 py-10 max-lg:px-6 max-lg:py-4`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased px-20 py-10 max-lg:px-6 max-lg:py-4 max-w-[98%] mx-auto`}
       >
         {children}
         <Analytics />
