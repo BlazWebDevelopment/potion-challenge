@@ -1,5 +1,3 @@
-"use client";
-
 import type React from "react";
 import { useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
@@ -39,13 +37,11 @@ export const Modal: React.FC<ModalProps> = ({
     if (isOpen) {
       document.addEventListener("keydown", handleEscape);
       document.addEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "hidden";
     }
 
     return () => {
       document.removeEventListener("keydown", handleEscape);
       document.removeEventListener("mousedown", handleClickOutside);
-      document.body.style.overflow = "unset";
     };
   }, [isOpen, onClose]);
 
@@ -58,7 +54,7 @@ export const Modal: React.FC<ModalProps> = ({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4 pointer-events-auto"
         >
           <motion.div
             initial={{ scale: 0.9, opacity: 0 }}
@@ -68,11 +64,11 @@ export const Modal: React.FC<ModalProps> = ({
             ref={modalRef}
             className="bg-background border border-accent-border rounded-lg shadow-lg max-w-md w-full max-h-[90vh] overflow-auto"
           >
-            <div className="flex justify-between items-center p-4 ">
-              <h2 className="text-lg font-semibold text-white/80">{title}</h2>
+            <div className="flex justify-between items-center p-4 border-b border-accent-border">
+              <h2 className="text-lg font-semibold text-gray-200">{title}</h2>
               <button
                 onClick={onClose}
-                className="text-secondary hover:text-secondary-hover transition-colors"
+                className="text-gray-500 hover:text-gray-700 transition-colors"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
