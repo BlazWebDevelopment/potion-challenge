@@ -1,5 +1,7 @@
 # Potion Leaderboard
 
+**Live demo:** https://potion-challenge.vercel.app/
+
 Potion Leaderboard is a comprehensive Next.js application designed to showcase and manage a leaderboard of traders. Built with a modern tech stack, it offers a seamless user experience with real-time data fetching, interactive UI components, and responsive design.
 
 ## Design
